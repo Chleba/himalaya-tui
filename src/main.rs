@@ -1,9 +1,6 @@
 use clap::Parser;
 use color_eyre::Result;
-use himalaya::{
-    cli::Cli, config::TomlConfig, envelope::command::list::EnvelopeListCommand,
-    message::command::mailto::MessageMailtoCommand,
-};
+use himalaya_tui::{cli::Cli, config::TomlConfig, message::command::mailto::MessageMailtoCommand};
 use pimalaya_tui::terminal::{
     cli::{printer::StdoutPrinter, tracing},
     config::TomlConfig as _,
@@ -37,9 +34,7 @@ async fn main() -> Result<()> {
         Some(cmd) => cmd.execute(&mut printer, cli.config_paths.as_ref()).await,
         None => {
             let config = TomlConfig::from_paths_or_default(cli.config_paths.as_ref()).await?;
-            EnvelopeListCommand::default()
-                .execute(&mut printer, &config)
-                .await
+            himalaya_tui::tui::run(config).await
         }
     };
 

@@ -1,7 +1,7 @@
 <div align="center">
   <img src="./logo.svg" alt="Logo" width="128" height="128" />
   <h1>📫 Himalaya</h1>
-  <p>CLI to manage emails</p>
+  <p>CLI & TUI to manage emails</p>
   <p>
     <a href="https://github.com/pimalaya/himalaya/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/pimalaya/himalaya?color=success"/></a>
     <a href="https://repology.org/project/himalaya/versions"><img alt="Repology" src="https://img.shields.io/repology/repositories/himalaya?color=success"></a>
@@ -33,6 +33,7 @@ himalaya envelope list --account posteo --folder Archives.FOSS --page 2
   - [Gmail](#gmail)
   - [Outlook](#outlook)
   - [iCloud Mail](#icloud-mail)
+- [Terminal User Interface](#terminal-user-interface)
 - [Interfaces](#interfaces)
 - [FAQ](#faq)
 - [Social](#social)
@@ -40,6 +41,7 @@ himalaya envelope list --account posteo --folder Archives.FOSS --page 2
 
 ## Features
 
+- **Interactive TUI**: A full-featured Terminal User Interface based on [ratatui](https://ratatui.rs/).
 - Multi-accounting configuration:
   - interactive via **wizard** (requires `wizard` feature)
   - manual via **TOML**-based configuration file (see [`./config.sample.toml`](./config.sample.toml))
@@ -510,6 +512,39 @@ Keeping your password inside the configuration file is good for testing purpose,
 
   Running `himalaya account configure icloud` will ask for your IMAP password, just paste the one generated previously.
 
+## Terminal User Interface
+
+Himalaya now features a native, interactive Terminal User Interface (TUI) in addition to its classic CLI. To launch the TUI, simply run `himalaya` without any arguments:
+
+```bash
+himalaya
+```
+
+### Key Features
+
+- **Gmail-style Layout**: Three-pane interface with Folders, Envelopes list, and Message Preview.
+- **Fast Navigation**: Switch between panels using numeric keys `1`, `2`, `3` or `Tab`.
+- **Stateless Actions**: Commands like Compose, Reply, and Forward seamlessly integrate with your `$EDITOR`.
+- **Automatic Refresh**: Periodically checks for new emails every minute.
+
+### Keyboard Shortcuts
+
+| Key | Action |
+| --- | --- |
+| `1` | Focus Folders panel |
+| `2` | Focus Envelopes panel |
+| `3` | Focus Message Preview |
+| `j`/`k` | Navigate lists or scroll message content |
+| `Enter` | Select folder or Read email |
+| `n`/`p` | Next/Previous page of emails |
+| `c` | Compose new email |
+| `r` | Reply to selected email |
+| `f` | Forward selected email |
+| `d` | Download all attachments from selected email |
+| `R` | Force refresh current view |
+| `?` | Show help popup |
+| `q` | Quit Himalaya |
+
 ## Interfaces
 
 These interfaces are built at the top of Himalaya CLI to improve the User Experience:
@@ -525,11 +560,13 @@ These interfaces are built at the top of Himalaya CLI to improve the User Experi
 <details>
   <summary>How different is it from aerc, mutt or alpine?</summary>
 
-  Aerc, mutt and alpine can be categorized as Terminal User Interfaces (TUI). When the program is executed, your terminal is locked into an event loop and you interact with your emails using keybinds.
+  Aerc, mutt and alpine are traditional Terminal User Interfaces (TUI). When the program is executed, your terminal is locked into an event loop and you interact with your emails using keybinds.
 
-  Himalaya is also a TUI, but more specifically a Command-Line Interface (CLI). There is no event loop: you interact with your emails using shell commands, in a stateless way.
+  Himalaya now offers both:
+  - An **interactive TUI** mode (run `himalaya` without arguments) for a modern, event-driven experience similar to aerc or mutt.
+  - A **stateless CLI** mode for interacting with your emails using shell commands, which is ideal for scripting and automation.
 
-  Additionaly, Himalaya CLI is based on `email-lib`, which is also part of the Pimalaya project. The aim is not just to propose a new terminal interface, but also to expose Rust tools to deal with emails. Anyone who knows Rust language can build his own email interface, without re-inventing the wheel.
+  Additionally, Himalaya is based on `email-lib`, which is also part of the Pimalaya project. The aim is not just to propose a new terminal interface, but also to expose Rust tools to deal with emails. Anyone who knows Rust language can build his own email interface, without re-inventing the wheel.
 </details>
 
 <details>

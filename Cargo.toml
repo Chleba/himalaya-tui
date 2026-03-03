@@ -1,15 +1,15 @@
 [package]
-name = "himalaya"
-description = "CLI to manage emails"
-version = "1.2.0"
-authors = ["Clément DOUIN <pimalaya.org@posteo.net>"]
+name = "himalaya-tui"
+description = "TUI to manage emails"
+version = "1.2.1"
+authors = ["Clément DOUIN <pimalaya.org@posteo.net>", "Chleba <chlebik@gmail.com>"]
 edition = "2021"
 license = "MIT"
-categories = ["command-line-utilities", "email"]
+categories = ["command-line-utilities", "email", "tui"]
 keywords = ["cli", "email", "imap", "maildir", "smtp"]
 homepage = "https://pimalaya.org"
-documentation = "https://github.com/pimalaya/himalaya"
-repository = "https://github.com/pimalaya/himalaya"
+documentation = "https://github.com/Chleba/himalaya-tui"
+repository = "https://github.com/Chleba/himalaya-tui"
 
 [package.metadata.docs.rs]
 features = ["imap", "maildir", "smtp", "sendmail", "oauth2", "wizard", "pgp-commands", "pgp-native"]
@@ -52,6 +52,8 @@ toml = "0.8"
 tracing = "0.1"
 url = "2.2"
 uuid = { version = "1.19", features = ["v4"] }
+ratatui = "0.26"
+crossterm = "0.29"
 
 [patch.crates-io]
 pimalaya-tui.git = "https://github.com/pimalaya/tui"

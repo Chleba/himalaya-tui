@@ -5,6 +5,7 @@ pub mod config;
 pub mod email;
 pub mod folder;
 pub mod manual;
+pub mod tui;
 
 use std::path::PathBuf;
 
