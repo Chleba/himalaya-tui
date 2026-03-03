@@ -31,10 +31,16 @@ async fn main() -> Result<()> {
     let cli = Cli::parse();
     let mut printer = StdoutPrinter::new(cli.output);
     let res = match cli.command {
+        Some(himalaya_tui::cli::HimalayaCommand::Tui) => {
+            let config = TomlConfig::from_paths_or_default(cli.config_paths.as_ref()).await?;
+            himalaya_tui::tui::run(config).await
+        }
         Some(cmd) => cmd.execute(&mut printer, cli.config_paths.as_ref()).await,
         None => {
             let config = TomlConfig::from_paths_or_default(cli.config_paths.as_ref()).await?;
-            himalaya_tui::tui::run(config).await
+            himalaya_tui::email::envelope::command::list::EnvelopeListCommand::default()
+                .execute(&mut printer, &config)
+                .await
         }
     };
 

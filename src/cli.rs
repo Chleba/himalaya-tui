@@ -131,6 +131,10 @@ pub enum HimalayaCommand {
     #[command(arg_required_else_help = true)]
     #[command(alias = "completions")]
     Completion(CompletionGenerateCommand),
+
+    /// Start the Terminal User Interface.
+    #[command()]
+    Tui,
 }
 
 impl HimalayaCommand {
@@ -166,6 +170,7 @@ impl HimalayaCommand {
             }
             Self::Manual(cmd) => cmd.execute(printer).await,
             Self::Completion(cmd) => cmd.execute().await,
+            Self::Tui => Ok(()),
         }
     }
 }
