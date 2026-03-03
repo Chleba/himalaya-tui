@@ -14,7 +14,7 @@
 himalaya envelope list --account posteo --folder Archives.FOSS --page 2
 ```
 
-![screenshot](./screenshot.jpeg)
+![demo](./demo.gif)
 
 ## Table of contents
 

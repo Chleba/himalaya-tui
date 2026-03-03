@@ -1,7 +1,7 @@
 [package]
 name = "himalaya-tui"
 description = "TUI to manage emails"
-version = "1.2.1"
+version = "1.3.0"
 authors = ["Clément DOUIN <pimalaya.org@posteo.net>", "Chleba <chlebik@gmail.com>"]
 edition = "2021"
 license = "MIT"
